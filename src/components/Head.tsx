@@ -11,7 +11,7 @@ const Head = (props: IHeadProps) => {
       <meta name="keywords" content="" />
       <meta name="author" content="" />
       <meta name="description" content="" />
-      <meta name="robots" content="index, follow" />
+      <meta name="robots" content="noindex" />
       <link rel="preconnect" href="https://fonts.gstatic.com"></link>
       <link
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
