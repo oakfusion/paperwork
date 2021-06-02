@@ -3,7 +3,7 @@ import OptionsPopover from "../components/OptionsPopover"
 import Popover from "../components/Popover"
 import DeletePop from "../components/DeletePop"
 import DuplicatePop from "../components/DuplicatePop"
-import EditPop from "../components/EditPop"
+import EditProjectPop from "../components/EditProjectPop"
 
 interface IProject {
   project: string
@@ -36,7 +36,7 @@ const Project = (props: IProject) => {
           duplicatePopover={setDuplicatePopover}
           title={
             (duplicatePopover ? "Duplicate?" : "") +
-            (editPopover ? "Edit" : "") +
+            (editPopover ? "" : "") +
             (delPopover ? "Delete?" : "")
           }
         >
@@ -50,7 +50,7 @@ const Project = (props: IProject) => {
             <></>
           )}
           {editPopover ? (
-            <EditPop
+            <EditProjectPop
               delPopover={setDelPopover}
               editPopover={setEditPopover}
               duplicatePopover={setDuplicatePopover}

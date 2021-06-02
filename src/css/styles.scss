@@ -53,6 +53,16 @@ $rose: #ffc7c7;
 .mt-20 {
   margin-top: 20px;
 }
+
+.my-10px {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.mx-55px {
+  margin-right: 55px;
+  margin-left: 55px;
+}
 .flex {
   display: flex;
 }
@@ -216,6 +226,15 @@ section {
   border-radius: 5px;
   padding: 10px;
   margin: 10px 15px 10px 0;
+}
+.form-input-black {
+  background-color: black;
+  color: gainsboro;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0 10px 0;
+  width: 300px;
 }
 .width-600 {
   width: 600px;
