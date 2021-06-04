@@ -338,6 +338,10 @@ section {
 .side-nav {
   border-right: 1px $gray solid;
   height: 100vh;
+
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 }
 .button {
   display: flex;
@@ -390,6 +394,15 @@ section {
   font-style: italic;
   color: $lightViolet;
 }
+
+.ucfirst {
+  text-transform: lowercase;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
 @media only screen and (max-width: 1200px) {
   .main-content-container {
     min-width: unset;

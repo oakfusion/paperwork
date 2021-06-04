@@ -10,19 +10,19 @@ const sideNavData = [
     id: 1,
     icon: lightningBolt,
     name: "Active contracts",
-    slug: "/active-contracts",
+    slug: "/contracts/active",
   },
   {
     id: 2,
     icon: bellIcon,
     name: "Pending contracts",
-    slug: "/pending-contracts",
+    slug: "/contracts/pending",
   },
   {
     id: 3,
     icon: suitcaseSimple,
     name: "Past contracts",
-    slug: "/past-contracts",
+    slug: "/contracts/finished",
   },
   {
     id: 4,

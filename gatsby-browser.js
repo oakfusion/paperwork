@@ -1,9 +1,9 @@
-/*
+
 import React from "react"
-import { Provider } from "react-redux"
-import store from "./src/store/store"
+import { QueryClient, QueryClientProvider } from 'react-query'
+ 
+const queryClient = new QueryClient()
 
 export const wrapRootElement = ({ element }) => {
-  return <Provider store={store}>{element}</Provider>
+  return <QueryClientProvider client={queryClient}>{element}</QueryClientProvider>
 }
-*/

@@ -1,5 +1,4 @@
-import React, { useState } from "react"
-import { Item } from "../helpers/helpers"
+import React, { useState, FC } from "react"
 import { Icon } from "@iconify/react"
 import arrowRightAlt2 from "@iconify-icons/dashicons/arrow-right-alt2"
 import OptionsPopover from "../components/OptionsPopover"
@@ -7,18 +6,9 @@ import Popover from "../components/Popover"
 import DeletePop from "../components/DeletePop"
 import DuplicatePop from "../components/DuplicatePop"
 import EditPop from "../components/EditPop"
+import { Contract as ContractType } from "../types/Contract"
 
-const Contract = (props: Item) => {
-  const {
-    project,
-    timePeriod,
-    contractValue,
-    vendor,
-    progress,
-    contractValueMore,
-    timePeriodMore,
-    vendorMore,
-  } = props
+const Contract: FC<ContractType> = ({ vendor, project, contractMeta }) => {
   const [moreActive, setMoreActive] = useState<boolean>(false)
   const [popover, setPopover] = useState(false)
 
@@ -26,10 +16,19 @@ const Contract = (props: Item) => {
   const [editPopover, setEditPopover] = useState<boolean>(false)
   const [delPopover, setDelPopover] = useState<boolean>(false)
 
+  const currentTimestamp = new Date().getTime()
+  const startDateTimestamp = new Date(contractMeta.startDate).getTime()
+  const endDateTimestamp = new Date(contractMeta.endDate).getTime()
+
+  const timePassed = currentTimestamp - startDateTimestamp
+  const timeToPass = endDateTimestamp - startDateTimestamp
+
+  const progress = (timePassed / timeToPass) * 100
+
   const toggleSeeMore = () => {
     setMoreActive(!moreActive)
   }
-  console.log(vendorMore)
+
   return (
     <>
       <div
@@ -88,13 +87,23 @@ const Contract = (props: Item) => {
             <div onClick={toggleSeeMore} className="pointer mt-15px">
               <Icon icon={arrowRightAlt2} />
             </div>
-            <div className="mt-15px"> {vendor}</div>
+            <div className="mt-15px"> {vendor.name}</div>
           </div>
           <div
             style={moreActive ? { opacity: "100%" } : {}}
             className="absolute mt-80px more-contract-info flex col trans-03s opacity-0"
           >
-            {vendorMore.map(
+            <span className="my-2px color-light-gray font-14px trans-03s">
+              {vendor.firstName} {vendor.lastName}
+            </span>
+            <span className="my-2px color-light-gray font-14px trans-03s">
+              {vendor.street} {vendor.houseNumber}{" "}
+              {vendor.flatNumber && `/ ${vendor.flatNumber}`}
+            </span>
+            <span className="my-2px color-light-gray font-14px trans-03s">
+              {vendor.zipCode} {vendor.city}
+            </span>
+            {[].map(
               (s, idx) =>
                 moreActive && (
                   <span
@@ -107,20 +116,22 @@ const Contract = (props: Item) => {
             )}
           </div>
         </div>
-        <div className="color-light-gray mt-15px">{project}</div>
+        <div className="color-light-gray mt-15px">{project.name}</div>
         <div className="flex col relative">
           <div className="time-period-progress-bar relative">
             <div
-              style={{ width: progress }}
+              style={{ width: `${progress}%` }}
               className="progress absolute"
             ></div>
           </div>
-          <div className="color-light-gray font-14px mt-10px">{timePeriod}</div>
+          <div className="color-light-gray font-14px mt-10px">
+            {contractMeta.startDate} - {contractMeta.endDate}
+          </div>
           <div
             style={moreActive ? { opacity: "100%" } : {}}
             className="absolute mt-80px more-contract-info flex col trans-03s opacity-0"
           >
-            {timePeriodMore.map(
+            {[].map(
               (s, idx) =>
                 moreActive && (
                   <span
@@ -135,12 +146,14 @@ const Contract = (props: Item) => {
         </div>
         <div className="color-light-gray">
           <div className="flex col relative">
-            <div className="mt-15px">{contractValue}</div>
+            <div className="mt-15px">
+              {contractMeta.value * 1000} {contractMeta.currency}
+            </div>
             <div
               style={moreActive ? { opacity: "100%" } : {}}
               className="absolute mt-80px more-contract-info flex col trans-03s opacity-0"
             >
-              {contractValueMore.map(
+              {[].map(
                 (s, idx) =>
                   moreActive && (
                     <span

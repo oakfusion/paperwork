@@ -15,7 +15,7 @@ const CreateContractPopover = (props: ICreateContractPopover) => {
     <div className="fixed t0 l0 w100vw h100vh flex justify-center align-center z-50 bg-black-transparent">
       <div className="absolute bg-color-dark-gray flex col br-radius-15px br-1-soli-gray">
         <div className="flex row justify-between">
-          <h2 style={{ padding: "0px 90px 0px 30px" }}>Chose templates</h2>
+          <h2 style={{ padding: "0 90px 0 30px" }}>Chose templates</h2>
           <div onClick={() => isActive(false)}>
             <Icon
               width={32}

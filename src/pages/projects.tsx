@@ -4,20 +4,28 @@ import projectsData from "../data/projectData"
 import Project from "../components/Project"
 
 import Layout from "../components/Layout"
+import { useQuery } from "react-query"
+import { getProjectsIndex } from "../api/projects"
 
 const Projects = () => {
+  const { data: projects, isFetching } = useQuery("projects", getProjectsIndex)
+
+  if (isFetching) {
+    return <span>Loading...</span>
+  }
+
   return (
     <Layout>
       <div className="flex col">
-        <h2>Vendors</h2>
+        <h2>Projects</h2>
         <ProjectTableTitles />
-        {projectsData.map(s => (
+        {projects.map(project => (
           <Project
-            key={s.id}
-            vendor={s.vendor}
-            project={s.project}
-            numOfContracts={s.numOfContracts}
-            totalValue={s.totalValue}
+            key={project.uuid}
+            vendor={project.vendor.name}
+            project={project.name}
+            numOfContracts="0"
+            totalValue="0"
           />
         ))}
       </div>
